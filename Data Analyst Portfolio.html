@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayşən A. — Data Analyst Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0f1a;
+    --bg2: #111525;
+    --card: #161b2e;
+    --accent: #4f8ef7;
+    --accent2: #a78bfa;
+    --gold: #f0c060;
+    --text: #e8eaf0;
+    --muted: #7a82a0;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(12,15,26,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(79,142,247,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { max-width: 760px; }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(79,142,247,0.12);
+    border: 1px solid rgba(79,142,247,0.3);
+    color: var(--accent);
+    padding: 0.35rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.8rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-bio {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+    line-height: 1.8;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; transition: all 0.2s;
+    cursor: pointer; border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #3a7de8; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* SKILLS STRIP */
+  .skills-strip {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+    display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+  }
+  .skills-strip span {
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    transition: all 0.2s;
+  }
+  .skills-strip span:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 3.5rem;
+    line-height: 1.15;
+  }
+
+  /* PROJECTS GRID */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .project-card:hover { border-color: rgba(79,142,247,0.3); transform: translateY(-3px); }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-tag {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.3rem 0.8rem; border-radius: 2rem;
+    margin-bottom: 1.2rem;
+  }
+  .tag-r { background: rgba(39,109,195,0.15); color: #4f8ef7; }
+  .tag-sql { background: rgba(240,192,96,0.12); color: var(--gold); }
+  .tag-featured { background: rgba(167,139,250,0.15); color: var(--accent2); }
+  .project-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem; margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+  .project-card p {
+    font-size: 0.9rem; color: var(--muted);
+    margin-bottom: 1.5rem; line-height: 1.7;
+  }
+  .project-tools {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .tool-badge {
+    font-size: 0.72rem; font-weight: 500;
+    color: var(--muted);
+    background: rgba(255,255,255,0.05);
+    padding: 0.25rem 0.7rem; border-radius: 0.3rem;
+    border: 1px solid var(--border);
+  }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.85rem; font-weight: 500;
+    color: var(--accent); text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 0.7rem; }
+
+  /* FEATURED card */
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding: 2.5rem;
+  }
+  .featured-badge {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: rgba(167,139,250,0.15);
+    border: 1px solid rgba(167,139,250,0.3);
+    color: var(--accent2);
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.8rem; border-radius: 2rem;
+  }
+  .featured-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 1rem;
+  }
+  .stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 0.7rem;
+    padding: 1rem;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem; color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem; color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+  .about-text p {
+    color: var(--muted); font-size: 1rem;
+    margin-bottom: 1.2rem; line-height: 1.85;
+  }
+  .about-highlights {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .highlight-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    transition: border-color 0.2s;
+  }
+  .highlight-item:hover { border-color: rgba(79,142,247,0.3); }
+  .highlight-icon {
+    font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem;
+  }
+  .highlight-item h4 {
+    font-weight: 500; font-size: 0.95rem; margin-bottom: 0.2rem;
+  }
+  .highlight-item p {
+    font-size: 0.83rem; color: var(--muted); line-height: 1.5;
+  }
+
+  /* CONTACT */
+  .contact-section { background: var(--bg2); }
+  .contact-inner {
+    max-width: 640px; margin: 0 auto; text-align: center;
+  }
+  .contact-inner .section-title { margin-bottom: 1rem; }
+  .contact-inner p {
+    color: var(--muted); margin-bottom: 2.5rem; font-size: 1rem;
+  }
+  .contact-links {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--muted); font-size: 0.82rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .skills-strip { padding: 1.5rem; }
+    .project-card.featured { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Ayşən A.</div>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Data Analyst · Computer Engineering</div>
+    <h1>Turning <em>complex data</em> into clear decisions</h1>
+    <p class="hero-bio">
+      Passionate about uncovering meaningful patterns in data and translating them into actionable insights. 
+      Experienced in SQL, R, statistical analysis, and interactive reporting — with a foundation in Cybersecurity for secure data handling.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View Projects →</a>
+      <a href="https://github.com/aysenaghayeva" target="_blank" class="btn btn-outline">GitHub Profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS STRIP -->
+<div class="skills-strip">
+  <span>SQL</span>
+  <span>R Programming</span>
+  <span>ggplot2 & plotly</span>
+  <span>data.table & dplyr</span>
+  <span>Excel · Pivot Tables · VLOOKUP</span>
+  <span>Power BI</span>
+  <span>Statistical Analysis</span>
+  <span>EDA</span>
+  <span>RMarkdown</span>
+  <span>Cybersecurity</span>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Portfolio</div>
+  <h2 class="section-title fade-in">Selected Projects</h2>
+
+  <div class="projects-grid">
+
+    <!-- FEATURED -->
+    <div class="project-card featured fade-in">
+      <div class="featured-badge">⭐ Featured</div>
+      <div>
+        <div class="project-tag tag-featured">Capstone Project</div>
+        <h3>Retail Sales Analysis — 10M+ Rows</h3>
+        <p>End-to-end analysis of 10 million+ retail receipt records. Covers data cleaning, category segmentation, anomaly detection, correlation analysis, and regression modelling across Foodshop, Healthcare, Restaurant and Clothing sectors.</p>
+        <div class="project-tools">
+          <span class="tool-badge">R</span>
+          <span class="tool-badge">data.table</span>
+          <span class="tool-badge">ggplot2</span>
+          <span class="tool-badge">plotly</span>
+          <span class="tool-badge">RMarkdown</span>
+        </div>
+        <a href="https://aysenaghayeva.github.io/retail-sales-analysis/index.html" target="_blank" class="project-link">View Live Report →</a>
+      </div>
+      <div class="featured-stats">
+        <div class="stat">
+          <div class="stat-num">10M+</div>
+          <div class="stat-label">Rows analysed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Anomaly types detected</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">-0.016</div>
+          <div class="stat-label">Sales–profit correlation</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Market chains compared</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TASK 1 -->
+    <div class="project-card fade-in">
+      <div class="project-tag tag-r">R · EDA</div>
+      <h3>Airbnb Listings Analysis</h3>
+      <p>Exploratory data analysis of Airbnb listings dataset. Import, cleaning, directory management, and initial statistical exploration using R and data.table.</p>
+      <div class="project-tools">
+        <span class="tool-badge">R</span>
+        <span class="tool-badge">data.table</span>
+        <span class="tool-badge">ggplot2</span>
+        <span class="tool-badge">readr</span>
+      </div>
+      <a href="https://aysenaghayeva.github.io/r-home-task-1-airbnb/airbnb-analysis.html" target="_blank" class="project-link">View Report →</a>
+    </div>
+
+    <!-- TASK 2 -->
+    <div class="project-card fade-in">
+      <div class="project-tag tag-r">R · Data Wrangling</div>
+      <h3>Netflix Data Analysis</h3>
+      <p>Analysis of Netflix and Netflix Novruz datasets. Data import, RDS format storage, join operations and comparative analysis between standard and holiday content libraries.</p>
+      <div class="project-tools">
+        <span class="tool-badge">R</span>
+        <span class="tool-badge">data.table</span>
+        <span class="tool-badge">dplyr</span>
+        <span class="tool-badge">plotly</span>
+      </div>
+      <a href="https://aysenaghayeva.github.io/r-home-task-2-netflix/netflix-analysis.html" target="_blank" class="project-link">View Report →</a>
+    </div>
+
+    <!-- TASK 3 -->
+    <div class="project-card fade-in">
+      <div class="project-tag tag-sql">SQL · R</div>
+      <h3>Heart Disease Data — SQL & R</h3>
+      <p>Connected R to MariaDB (MySQL) database. Gender classification, categorical feature engineering, and statistical analysis of heart disease dataset using case_when logic.</p>
+      <div class="project-tools">
+        <span class="tool-badge">R</span>
+        <span class="tool-badge">MySQL</span>
+        <span class="tool-badge">MariaDB</span>
+        <span class="tool-badge">data.table</span>
+      </div>
+      <a href="https://aysenaghayeva.github.io/r-home-task-3-heart-disease/heart-disease-analysis.html" target="_blank" class="project-link">View Report →</a>
+    </div>
+
+    <!-- TASK 4 -->
+    <div class="project-card fade-in">
+      <div class="project-tag tag-sql">SQL · Visualization</div>
+      <h3>Sales Order Analysis — SQL & R</h3>
+      <p>Order-level analysis from a relational database. Yearly and shipping-type breakdowns of order counts and profit (in thousands), visualised with multi-panel ggplot2 charts.</p>
+      <div class="project-tools">
+        <span class="tool-badge">R</span>
+        <span class="tool-badge">MySQL</span>
+        <span class="tool-badge">ggplot2</span>
+        <span class="tool-badge">dplyr</span>
+      </div>
+      <a href="https://aysenaghayeva.github.io/r-home-task-4-sales-orders/sales-orders-analysis.html" target="_blank" class="project-link">View Report →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <h2 class="section-title" style="margin-bottom:1.5rem">Analytical mind,<br><em style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--accent)">data-driven</em> approach</h2>
+      <p>I'm a Computer Engineering student (Expected May 2026) with hands-on experience turning messy, real-world datasets into clear, actionable stories.</p>
+      <p>My background spans data analytics, statistical modelling, and a foundation in cybersecurity — giving me a unique lens for both insight and data integrity.</p>
+      <p>I believe the best analysis is one that non-technical stakeholders can act on immediately.</p>
+    </div>
+    <div class="about-highlights fade-in">
+      <div class="highlight-item">
+        <div class="highlight-icon">📊</div>
+        <div>
+          <h4>Data Analysis & EDA</h4>
+          <p>SQL, R, statistical analysis, data cleaning & transformation at scale</p>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-icon">📈</div>
+        <div>
+          <h4>Visualisation & Reporting</h4>
+          <p>ggplot2, plotly, Power BI, Excel — interactive and presentation-ready outputs</p>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-icon">🔐</div>
+        <div>
+          <h4>Security-Aware Analyst</h4>
+          <p>Cybersecurity fundamentals ensure accurate, reliable and secure data handling</p>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-icon">🎓</div>
+        <div>
+          <h4>Computer Engineering</h4>
+          <p>Expected graduation May 2026 — blending engineering rigour with analytical thinking</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-inner fade-in">
+    <div class="section-label">Get in touch</div>
+    <h2 class="section-title">Let's work together</h2>
+    <p>Open to data analyst roles, internships, and collaborative projects. Feel free to reach out!</p>
+    <div class="contact-links">
+      <a href="https://github.com/aysenaghayeva" target="_blank" class="btn btn-primary">GitHub →</a>
+      <a href="https://linkedin.com/in/aysenaghayeva" target="_blank" class="btn btn-outline">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Ayşən A. — Data Analyst Portfolio</span>
+  <span>Built with HTML · Hosted on GitHub Pages</span>
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
